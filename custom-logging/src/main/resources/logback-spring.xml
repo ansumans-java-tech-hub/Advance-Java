@@ -1,0 +1,16 @@
+<configuration>
+    <!-- Define a pattern to log the correlation ID along with the log level and message -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [X-Correlation-ID: %X{X-Correlation-ID}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set the root logger to use the Console appender and log at INFO level -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <!-- Optionally, add more specific logging levels for different packages -->
+    <logger name="org.springframework.web" level="DEBUG" />
+</configuration>
