@@ -3,6 +3,7 @@ package com.poc.logging.config;
 import org.slf4j.MDC;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +24,7 @@ import java.io.IOException;
  */
 
 @Component
-public class CorrelationIdInterceptor implements org.springframework.http.client.ClientHttpRequestInterceptor {
+public class CorrelationIdInterceptor implements ClientHttpRequestInterceptor {
 
     private static final String CORRELATION_ID_HEADER = "X-Correlation-ID";
 
@@ -42,14 +43,11 @@ public class CorrelationIdInterceptor implements org.springframework.http.client
      */
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-
-            String correlationId = MDC.get(CORRELATION_ID_HEADER);
+        String correlationId = MDC.get(CORRELATION_ID_HEADER);
             if (correlationId == null || correlationId.isEmpty()) {
-                correlationId = java.util.UUID.randomUUID().toString();
+                correlationId = String.valueOf(java.util.UUID.randomUUID());
             }
-            // Add the correlation ID header to the outgoing request
             request.getHeaders().add(CORRELATION_ID_HEADER, correlationId);
-            // Continue the request
             return execution.execute(request, body);
 
 

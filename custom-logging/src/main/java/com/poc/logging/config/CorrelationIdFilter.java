@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Correlation Id filter class Retrieves or generate the correlation ID
+ */
 @Component
 public class CorrelationIdFilter implements Filter {
 
