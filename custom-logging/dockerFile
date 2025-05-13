@@ -1,0 +1,17 @@
+# Use a minimal base image with JDK
+FROM eclipse-temurin:17-jdk-alpine
+
+# Set environment variables
+ENV JAVA_OPTS="-Xms256m -Xmx512m"
+
+# Set working directory
+WORKDIR /app
+
+# Copy the fat JAR
+COPY target/app.jar app.jar
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Run the Spring Boot application
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
