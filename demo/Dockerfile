@@ -1,4 +1,5 @@
-FROM maven:3.9.5-eclipse-temurin-21 as builder
+# Stage 1: Build using Maven + JDK 21
+FROM qpod/jdk-21 as builder
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests

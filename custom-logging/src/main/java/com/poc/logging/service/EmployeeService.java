@@ -10,8 +10,10 @@ import java.util.List;
 public class EmployeeService {
 
     public List<Employee> getEmployeeData(){
-        return Arrays.asList(new Employee(1,"emplyee1","emplyee1@email.com"),
-                new Employee(2,"emplyee2","emplyee2@email.com"));
+        return List.of(
+                new Employee(1,"emp1","emp1@gmail.com"),
+                new Employee(2,"emp2","emp2@gmail.com")
+        );
     }
 
 

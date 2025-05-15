@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/Custom-logging-1/pom.xml" />
         <option value="$PROJECT_DIR$/custom-logging/pom.xml" />
+        <option value="$PROJECT_DIR$/app-security/pom.xml" />
       </list>
     </option>
   </component>
